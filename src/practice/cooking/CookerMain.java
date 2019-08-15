@@ -1,12 +1,20 @@
 package practice.cooking;
 
+import java.io.IOException;
+
 public class CookerMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Cooker 요리사 = new Cooker();
 		
-		요리사.주문이요();
+		boolean always = true;
+		
+		while(always == true) {
+			
+			요리사.주문이요();
+	
+		}
 		
 	}
 	

@@ -1,5 +1,9 @@
 package practice.cooking;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -11,7 +15,7 @@ public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무�
 	int 스파게티가격 = 9000;
 	int 짜장면가격 = 6000;
 	int 매출 = 0;
-	Map<String, Integer> 메뉴판;
+	Map<String, Integer> 메뉴판 = new HashMap<String, Integer>();
 	
 	// 생성자는 고용.
 	public Cooker() {
@@ -22,8 +26,9 @@ public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무�
 		
 	}
 		
-	public void 주문이요() {
+	public void 주문이요() throws IOException {
 		
+		System.out.println("=================================================");
 		System.out.println("메뉴판을 보여드립니다.");
 		System.out.println("아래 음식중에서 하나를 선택 하세요.");
 
@@ -35,12 +40,38 @@ public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무�
 			System.out.println(요리+" : "+메뉴판.get(요리) + "원");
 			
 		}
+        
+        String 주문 = 주문입력받기();        
+        요리횟수올리기();
+        매출에더하기(주문);
+        
+        System.out.println("요리사가 요리한 횟수는? "+ 요리횟수 + "번 째 요리 했습니다.");
+		
+	}
+	
+	public String 주문입력받기() throws IOException {
+		// 주문 입력 받기.
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        
+        String 주문 = in.readLine();
+        
+        System.out.println(주문 + "을/를 주문하셨습니다.");
+        
+        return 주문;
 		
 	}
 	
 	public void 요리횟수올리기() {
 		
 		요리횟수++;
+		
+	}
+	
+	public void 매출에더하기(String 주문) {
+		
+		매출 += 메뉴판.get(주문);
+		
+		System.out.println("오늘의 총매출은 "+매출+"원 입니다.");
 		
 	}
 	
