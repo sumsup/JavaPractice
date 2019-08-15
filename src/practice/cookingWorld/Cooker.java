@@ -1,4 +1,4 @@
-package practice.cooking;
+package practice.cookingWorld;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,7 +41,8 @@ public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무�
 			
 		}
         
-        String 주문 = 주문입력받기();        
+        String 주문 = 주문입력받기();
+        재료주문();
         요리횟수올리기();
         매출에더하기(주문);
         
@@ -72,6 +73,48 @@ public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무�
 		매출 += 메뉴판.get(주문);
 		
 		System.out.println("오늘의 총매출은 "+매출+"원 입니다.");
+		
+	}
+	
+	public void 재료주문() throws IOException {
+		
+		CookingSource 주문 = new CookingSource();
+		
+		Iterator<String> keys = 주문.재료들.keySet().iterator();
+		
+		while( keys.hasNext()) {
+			
+			String 재료 = keys.next();
+			System.out.println("재료 : \""+재료+ "\" 의 가격은 "+주문.재료들.get(재료)+" 원 입니다.");
+			
+		}
+		
+		// 재료를 추가 하시겠습니까?
+		System.out.println("혹시 주문 재료를 추가하시겠습니까? (yes/no)");
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String 주문재료추가여부 = in.readLine();
+				
+		if(주문재료추가여부.equals("yes")) {
+			
+			출력("추가하실 주문 재료 이름을 입력해주세요.");
+			String 추가주문재료 = in.readLine();
+			출력("추가하실 주문 재료의 단가를 입력해 주세요. (숫자만 입력)");
+			String 추가주문재료가격입력 = in.readLine();
+			int 추가주문재료가격 = Integer.parseInt(추가주문재료가격입력);
+			
+			주문.재료추가(추가주문재료, 추가주문재료가격);
+			
+			출력("추가하실 주문 재료는 \""+추가주문재료+"\" 이며 가격은 \""+ 추가주문재료가격+"\" 원 입니다.");
+			
+		}
+		
+		
+	}
+		
+	public void 출력(String 출력할것) {
+		
+		System.out.println(출력할것);
 		
 	}
 	
