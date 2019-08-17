@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
 public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무도구와 업무를 설계한다.
 	
 	// 멤버변수는 업무도구.
@@ -52,7 +53,9 @@ public class Cooker { // 클래스는 일꾼. 하나의 일꾼이 하는 업무�
 	
 	public String 주문입력받기() throws IOException {
 		// 주문 입력 받기.
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "euc-kr"));
+        
+        //Scanner scan = new Scanner(System.in); // Scanner는 성능이 너무 떨어지니까 InputStreamReader를 쓰자.
         
         String 주문 = in.readLine();
         
